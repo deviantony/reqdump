@@ -6,7 +6,6 @@ import (
 	"net/http/httputil"
 
 	httperror "github.com/portainer/libhttp/error"
-	"github.com/portainer/libhttp/response"
 )
 
 func (handler *Handler) dumpPostRequest(w http.ResponseWriter, r *http.Request) *httperror.HandlerError {
@@ -16,5 +15,6 @@ func (handler *Handler) dumpPostRequest(w http.ResponseWriter, r *http.Request) 
 	}
 	fmt.Println(string(requestDump))
 
-	return response.Empty(w)
+	w.WriteHeader(http.StatusOK)
+	return nil
 }
